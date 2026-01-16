@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Art Haus Premium Dark Theme */
+    --background: 0 0% 5%;
+    --foreground: 45 30% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 45 30% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 30% 95%;
+
+    /* Gold Primary */
+    --primary: 43 74% 49%;
+    --primary-foreground: 0 0% 5%;
+
+    /* Bronze Secondary */
+    --secondary: 30 60% 35%;
+    --secondary-foreground: 45 30% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 45 10% 60%;
+
+    /* Gold Accent */
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 30% 95%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 15%;
+    --ring: 43 74% 49%;
+
+    --radius: 1rem;
+
+    /* Custom Art Haus tokens */
+    --gold: 43 74% 49%;
+    --gold-light: 45 80% 65%;
+    --bronze: 30 60% 35%;
+    --bronze-light: 32 55% 50%;
+    --charcoal: 0 0% 8%;
+    --charcoal-light: 0 0% 12%;
+    --cream: 45 30% 95%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 74% 49%), hsl(30 60% 35%));
+    --gradient-gold-shine: linear-gradient(135deg, hsl(45 80% 65%), hsl(43 74% 49%), hsl(30 60% 35%));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 8%), hsl(0 0% 5%));
+
+    /* Shadows */
+    --shadow-gold: 0 4px 30px -5px hsl(43 74% 49% / 0.3);
+    --shadow-card: 0 8px 40px -10px hsl(0 0% 0% / 0.5);
+    --shadow-hover: 0 12px 50px -10px hsl(43 74% 49% / 0.4);
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 45 30% 95%;
+    --sidebar-primary: 43 74% 49%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 45 30% 95%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 43 74% 49%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 45 30% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 45 30% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 30% 95%;
+    --primary: 43 74% 49%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 30 60% 35%;
+    --secondary-foreground: 45 30% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 45 10% 60%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 30% 95%;
+    --border: 0 0% 18%;
+    --input: 0 0% 15%;
+    --ring: 43 74% 49%;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 45 30% 95%;
+    --sidebar-primary: 43 74% 49%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 45 30% 95%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 43 74% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .gradient-gold-shine {
+    background: var(--gradient-gold-shine);
+  }
+
+  .gradient-dark {
+    background: var(--gradient-dark);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .text-gradient-gold {
+    background: var(--gradient-gold-shine);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .btn-gold {
+    @apply relative overflow-hidden rounded-full px-8 py-4 font-semibold transition-all duration-300;
+    background: var(--gradient-gold);
+    color: hsl(var(--primary-foreground));
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .btn-gold:active {
+    transform: translateY(0);
+  }
+
+  .btn-gold-outline {
+    @apply relative overflow-hidden rounded-full px-8 py-4 font-semibold transition-all duration-300 border-2;
+    border-color: hsl(var(--gold));
+    color: hsl(var(--gold));
+    background: transparent;
+  }
+
+  .btn-gold-outline:hover {
+    background: hsl(var(--gold) / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-premium {
+    @apply rounded-2xl overflow-hidden transition-all duration-500;
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-premium:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .whatsapp-btn {
+    @apply fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full px-6 py-4 font-semibold transition-all duration-300 md:hidden;
+    background: #25D366;
+    color: white;
+    box-shadow: 0 4px 20px -5px #25D366;
+  }
+
+  .whatsapp-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 30px -5px #25D366;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 20px hsl(43 74% 49% / 0.3);
+    }
+    to {
+      box-shadow: 0 0 40px hsl(43 74% 49% / 0.6);
+    }
+  }
+}
