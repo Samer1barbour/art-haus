@@ -35,6 +35,7 @@ const OrderPage = () => {
     [cart]
   );
 
+  /* Auto redirect after success */
   useEffect(() => {
     if (step === "success") {
       const t = setTimeout(() => navigate("/"), 5000);
@@ -42,6 +43,9 @@ const OrderPage = () => {
     }
   }, [step, navigate]);
 
+  /* ===============================
+     PLACE ORDER VIA WHATSAPP
+  =============================== */
   const placeOrderWhatsApp = () => {
     if (!form.fullName || !form.phone || !form.address) {
       alert("Please fill all required fields.");
@@ -57,21 +61,34 @@ const OrderPage = () => {
       )
       .join("\n");
 
-    const message =
-      `🛒 New Order\n\n` +
-      `👤 ${form.fullName}\n📞 ${form.phone}\n📍 ${form.address}\n\n` +
-      `📦 Items:\n${itemsText}\n\n💰 Total: $${total.toFixed(2)}`;
+    const message = `Hello Art Haus 👋
+I would like to place an order.
 
-    window.open(
-      `https://wa.me/961XXXXXXXX?text=${encodeURIComponent(message)}`,
-      "_blank"
-    );
+👤 Name: ${form.fullName}
+📞 Phone: ${form.phone}
+📍 Address: ${form.address}
+
+📦 Items:
+${itemsText}
+
+💰 Total: $${total.toFixed(2)}
+
+Thank you!`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappUrl = `https://wa.me/96170073526?text=${encodedMessage}`;
+
+    // ✅ IMPORTANT: do NOT use navigate or Link
+    window.open(whatsappUrl, "_blank");
 
     clearCart();
     setStep("success");
   };
 
-  /* SUCCESS */
+  /* ===============================
+     SUCCESS SCREEN
+  =============================== */
   if (step === "success") {
     return (
       <div className="mx-auto max-w-3xl p-6">
@@ -96,10 +113,12 @@ const OrderPage = () => {
     );
   }
 
-  /* CART + CHECKOUT */
+  /* ===============================
+     CART + CHECKOUT
+  =============================== */
   return (
     <div className="mx-auto max-w-4xl p-6">
-      {/* 🔹 ELEGANT BACK TO SHOP */}
+      {/* BACK TO SHOP */}
       <button
         onClick={() => navigate("/")}
         className="mb-4 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
@@ -154,7 +173,6 @@ const OrderPage = () => {
               ))}
             </div>
 
-            {/* 🔴 PROCEED BUTTON ALWAYS HERE */}
             <div className="mt-8 flex items-center justify-between">
               <p className="text-2xl font-bold text-gold">
                 ${total.toFixed(2)}
@@ -212,7 +230,6 @@ const OrderPage = () => {
                 Back to cart
               </button>
 
-              {/* 🔴 PLACE ORDER ALWAYS VISIBLE */}
               <button
                 className="btn-gold"
                 onClick={placeOrderWhatsApp}

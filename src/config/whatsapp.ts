@@ -1,6 +1,13 @@
-// WhatsApp configuration - Update this number for your business
-export const WHATSAPP_NUMBER = "+96170123456"; // Replace with your actual Lebanese WhatsApp number
+// ===============================
+// WhatsApp Configuration
+// ===============================
 
+// Lebanese WhatsApp business number
+export const WHATSAPP_NUMBER = "+96170073526";
+
+// ===============================
+// Message Generator
+// ===============================
 export const generateWhatsAppMessage = (
   productName: string,
   quantity: number,
@@ -22,9 +29,14 @@ I would like to place an order.
 
 Thank you!`;
 
+  // Encode message for URL
   return encodeURIComponent(message);
 };
 
-export const getWhatsAppUrl = (message: string): string => {
-  return `https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}?text=${message}`;
+// ===============================
+// WhatsApp URL Builder
+// ===============================
+export const getWhatsAppUrl = (encodedMessage: string): string => {
+  const cleanNumber = WHATSAPP_NUMBER.replace(/[^0-9]/g, "");
+  return `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
 };
