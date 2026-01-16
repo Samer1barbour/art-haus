@@ -18,7 +18,8 @@ export const products: Product[] = [
     name: "Golden Bear",
     price: 89.99,
     image: toyBearGold,
-    description: "Premium metallic gold finish bear figure, handcrafted with attention to detail.",
+    description:
+      "Premium metallic gold finish bear figure, handcrafted with attention to detail.",
     collection: "Metallic Series",
   },
   {
@@ -26,7 +27,8 @@ export const products: Product[] = [
     name: "Noir Bot",
     price: 119.99,
     image: toyRobotBlack,
-    description: "Sleek matte black robot with gold chrome accents. Limited edition.",
+    description:
+      "Sleek matte black robot with gold chrome accents. Limited edition.",
     collection: "Tech Collection",
   },
   {
@@ -34,7 +36,8 @@ export const products: Product[] = [
     name: "Bronze Bunny",
     price: 79.99,
     image: toyBunnyBronze,
-    description: "Adorable copper-bronze bunny sculpture with artistic finish.",
+    description:
+      "Adorable copper-bronze bunny sculpture with artistic finish.",
     collection: "Metallic Series",
   },
   {
@@ -42,11 +45,12 @@ export const products: Product[] = [
     name: "Shadow Cat",
     price: 99.99,
     image: toyCatNoir,
-    description: "Elegant matte black cat with subtle gold ear accents.",
+    description:
+      "Elegant matte black cat with subtle gold ear accents.",
     collection: "Noir Collection",
   },
 ];
 
 export const getProductById = (id: string): Product | undefined => {
-  return products.find((product) => product.id === id);
+  return products.find((p) => p.id === id);
 };

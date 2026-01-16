@@ -1,28 +1,37 @@
-import { NavLink as RouterNavLink, NavLinkProps } from "react-router-dom";
-import { forwardRef } from "react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import CartDrawer from "./CartDrawer";
 
-interface NavLinkCompatProps extends Omit<NavLinkProps, "className"> {
-  className?: string;
-  activeClassName?: string;
-  pendingClassName?: string;
-}
+const Navbar = () => {
+  const { cart } = useCart();
+  const [open, setOpen] = useState(false);
 
-const NavLink = forwardRef<HTMLAnchorElement, NavLinkCompatProps>(
-  ({ className, activeClassName, pendingClassName, to, ...props }, ref) => {
-    return (
-      <RouterNavLink
-        ref={ref}
-        to={to}
-        className={({ isActive, isPending }) =>
-          cn(className, isActive && activeClassName, isPending && pendingClassName)
-        }
-        {...props}
-      />
-    );
-  },
-);
+  const count = cart.reduce((s, i) => s + i.quantity, 0);
 
-NavLink.displayName = "NavLink";
+  return (
+    <>
+      <nav className="flex items-center justify-between border-b px-6 py-4">
+        <Link to="/" className="text-xl font-semibold">
+          ArtHaus
+        </Link>
 
-export { NavLink };
+        <button
+          onClick={() => setOpen(true)}
+          className="relative text-sm"
+        >
+          Cart
+          {count > 0 && (
+            <span className="absolute -top-2 -right-3 rounded-full bg-gold px-2 py-0.5 text-xs text-black">
+              {count}
+            </span>
+          )}
+        </button>
+      </nav>
+
+      <CartDrawer open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+};
+
+export default Navbar;

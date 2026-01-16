@@ -1,68 +1,75 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Product } from "@/data/products";
+import { Product } from "../data/products";
 
 interface ProductCardProps {
   product: Product;
   index: number;
+  variant?: "default" | "compact";
 }
 
-const ProductCard = ({ product, index }: ProductCardProps) => {
+const ProductCard = ({
+  product,
+  index,
+  variant = "default",
+}: ProductCardProps) => {
   const navigate = useNavigate();
-
-  const handleOrderClick = () => {
-    navigate(`/order/${product.id}`);
-  };
+  const isCompact = variant === "compact";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="card-premium group"
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      onClick={() => navigate(`/product/${product.id}`)}
+      className="card-premium cursor-pointer"
     >
-      {/* Product Image */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
+      {/* IMAGE */}
+      <div
+        className={`relative mx-auto overflow-hidden bg-charcoal ${
+          isCompact
+            ? "aspect-square max-h-40"
+            : "aspect-[4/5] max-h-56"
+        }`}
+      >
         <img
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
           loading="lazy"
         />
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        
-        {/* Collection badge */}
-        <div className="absolute left-4 top-4">
-          <span className="rounded-full bg-charcoal/80 px-3 py-1 text-xs font-medium text-gold backdrop-blur-sm">
+
+        {/* Collection badge (kept subtle) */}
+        <div className="absolute left-3 top-3">
+          <span className="rounded-full bg-black/50 px-2 py-0.5 text-[10px] text-muted-foreground backdrop-blur">
             {product.collection}
           </span>
         </div>
       </div>
 
-      {/* Product Info */}
-      <div className="p-5 md:p-6">
-        <h3 className="text-xl font-semibold text-foreground md:text-2xl">
+      {/* INFO */}
+      <div className={isCompact ? "p-4" : "p-5 md:p-6"}>
+        <h3
+          className={`font-semibold text-foreground ${
+            isCompact ? "text-base" : "text-lg md:text-xl"
+          }`}
+        >
           {product.name}
         </h3>
-        <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-          {product.description}
-        </p>
-        
-        <div className="mt-4 flex items-center justify-between">
-          <p className="text-2xl font-bold text-gold md:text-3xl">
-            ${product.price.toFixed(2)}
-          </p>
-        </div>
 
-        <motion.button
-          onClick={handleOrderClick}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="btn-gold mt-5 w-full text-base"
+        {!isCompact && (
+          <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+            {product.description}
+          </p>
+        )}
+
+        <p
+          className={`mt-3 font-bold text-gold ${
+            isCompact ? "text-lg" : "text-xl md:text-2xl"
+          }`}
         >
-          Order Now
-        </motion.button>
+          ${product.price.toFixed(2)}
+        </p>
       </div>
     </motion.div>
   );
