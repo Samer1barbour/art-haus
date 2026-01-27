@@ -43,7 +43,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <span className="mb-4 inline-block rounded-full border border-gold/30 bg-gold/5 px-4 py-2 text-sm font-medium text-gold">
-            Premium Designer Toys
+            Premium Designs
           </span>
         </motion.div>
 
@@ -63,7 +63,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-lg"
         >
-          Discover exclusive designer toys crafted with precision. Each piece is a 
+          Discover exclusive designs crafted with precision. Each piece is a 
           statement of artistry, ready to elevate your collection.
         </motion.p>
 

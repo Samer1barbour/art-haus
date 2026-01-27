@@ -38,7 +38,7 @@ const AboutSection = () => {
               Where Art Meets Play
             </h2>
             <p className="mt-6 text-muted-foreground">
-              Art Haus brings you the world's most sought-after designer toys and 
+              Art Haus brings you the world's most sought-after designs and 
               collectibles. Based in Lebanon, we curate exclusive pieces that blend 
               artistic expression with playful design.
             </p>

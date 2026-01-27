@@ -14,7 +14,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: "golden-bear",
+    id: "1",
     name: "Golden Bear",
     price: 89.99,
     image: toyBearGold,
@@ -23,7 +23,7 @@ export const products: Product[] = [
     collection: "Metallic Series",
   },
   {
-    id: "noir-bot",
+    id: "2",
     name: "Noir Bot",
     price: 119.99,
     image: toyRobotBlack,
@@ -32,7 +32,7 @@ export const products: Product[] = [
     collection: "Tech Collection",
   },
   {
-    id: "bronze-bunny",
+    id: "3",
     name: "Bronze Bunny",
     price: 79.99,
     image: toyBunnyBronze,
@@ -41,7 +41,7 @@ export const products: Product[] = [
     collection: "Metallic Series",
   },
   {
-    id: "shadow-cat",
+    id: "4",
     name: "Shadow Cat",
     price: 99.99,
     image: toyCatNoir,

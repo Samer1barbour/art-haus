@@ -8,7 +8,7 @@ const Footer = () => {
               ART HAUS
             </span>
             <p className="mt-2 text-sm text-muted-foreground">
-              Premium Designer Toys • Lebanon
+              Premium Designs  • Lebanon
             </p>
           </div>
           
